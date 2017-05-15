@@ -26,16 +26,9 @@ allSpatialData = []
 allPalData = []
 errors = []
 
-# Create filepaths for CSV files
-oddityOutput = "%sallOddity.csv" % (outputFolder)
-spatialOutput = "%sallSpatial.csv" % (outputFolder)
-palOutput = "%sallPal.csv" % (outputFolder)
-errorOutput = "%serrors.csv" % (outputFolder)
 
 #%% Start loop to analyse each participant
 for index, participantData in enumerate(jsonData):
-    
-    print('Participant:',index)
     
     # get task data
     oddityData = cf.getTaskData(participantData, 'oddity')
@@ -69,7 +62,9 @@ for index, participantData in enumerate(jsonData):
         if palData["state"] == "completed":
             subjectAllPalData = cf.processData(palData)
             allPalData.append(subjectAllPalData)
-        
+       
+    print('Participant',index+1, 'done')
+    
 # Flatten Data
 
 finalOddity = cf.flattenData(allOddityData)
@@ -81,10 +76,10 @@ if not os.path.exists(outputFolder):
     os.makedirs(outputFolder)
     
 # Output to CSV
-finalOddity.to_csv(oddityOutput)
-finalSpatial.to_csv(spatialOutput)
-finalPal.to_csv(palOutput)
+finalOddity.to_csv("%sallOddity.csv" % (outputFolder))
+finalSpatial.to_csv("%sallSpatial.csv" % (outputFolder))
+finalPal.to_csv("%sallPal.csv" % (outputFolder))
 
 # Output errors
 errors = pd.DataFrame(errors)
-errors.to_csv(errorOutput)
+errors.to_csv("%serrors.csv" % (outputFolder))

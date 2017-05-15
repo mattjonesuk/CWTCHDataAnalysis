@@ -200,7 +200,7 @@ def processData (data):
                 for trialNo, trial in enumerate(trials):
                         trialStartTime = trial['startTrial']
                         trialEndTime = trial['endTrial']
-                        corrPosition = trial['stimuli'][0] #is this correct??
+                        corrPosition = trial['stimuli'][0] 
                         
                         # the following if statement was added because some
                         # trials did not have any response. It prevents an 
