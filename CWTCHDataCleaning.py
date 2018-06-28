@@ -25,9 +25,6 @@ outputFolder = "/Users/mattjones/Downloads/testoutput2/"
 
 
 
-
-
-
 ## NOTHING BELOW NEEDS EDITING!!
 
 
