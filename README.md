@@ -1,6 +1,6 @@
 # CWTCHDataAnalysis
 
-CWTCH – Data Analysis Process
+## CWTCH – Data Analysis Process
 
 Prerequisites
 
@@ -13,7 +13,7 @@ Installing and opening Spyder IDE (if IDE not already installed)
 2.	Open Anaconda Navigator and click to install ‘spyder’
 3.	Click to launch spyder once installed
 
-Summary of Analysis Scripts
+## Summary of Analysis Scripts
 
 •	CWTCHDataCleaning.py
 This script sorts through the JSON data file, removing any incomplete data and restructuring the data into a matrix-like format.  This is then saved in CSV format to be then used in R (or similar statistical package).  Note: Editable fields need to be amended at the top of the script.
