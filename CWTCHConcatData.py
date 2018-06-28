@@ -24,8 +24,6 @@ outputFolder = "/Users/mattjones/Downloads/testoutput2/testfinaloutput/"
 
 
 
-
-
 ## NOTHING BELOW NEEDS EDITING!!
 
 import os

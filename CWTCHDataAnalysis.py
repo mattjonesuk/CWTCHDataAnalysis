@@ -22,9 +22,6 @@ figsFolder = '/Users/mattjones/Downloads/FinalOutput'
 
 
 
-
-
-
 ## NOTHING BELOW NEEDS EDITING!!
 
 import sys
