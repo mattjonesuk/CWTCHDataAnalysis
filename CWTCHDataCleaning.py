@@ -47,7 +47,6 @@ if len(jsonData) != expectedNoSubjects:
 # Create an empty list to store all data for each task
 allOddityData = []
 allSpatialData = []
-allPalData = []
 errors = []
 
 
@@ -57,7 +56,6 @@ for index, participantData in enumerate(jsonData):
     # get task data
     oddityData = cf.getTaskData(participantData, 'oddity')
     spatialData = cf.getTaskData(participantData, 'spatial')
-    palData = cf.getTaskData(participantData, 'pal')
     
     # Oddity Data
     if oddityData is 'None':
@@ -76,16 +74,6 @@ for index, participantData in enumerate(jsonData):
     elif spatialData["state"] == "completed":
         subjectAllSpatialData = cf.processData(spatialData)
         allSpatialData.append(subjectAllSpatialData)
-            
-            
-    # PAL Data
-    if palData is 'None':
-        errors.append('No PAL data for participant - %s' % (participantData[0]['panelId']))
-    elif palData["state"] == "abandoned":
-        errors.append('PAL abandoned for participant - %s' % (participantData[0]['panelId']))
-    elif palData["state"] == "completed":
-            subjectAllPalData = cf.processData(palData)
-            allPalData.append(subjectAllPalData)
        
     print('Participant',index+1, 'done')
     
@@ -93,7 +81,6 @@ for index, participantData in enumerate(jsonData):
 
 finalOddity = cf.flattenData(allOddityData)
 finalSpatial = cf.flattenData(allSpatialData)
-finalPal = cf.flattenData(allPalData)
 
 # Create Output Folder
 if not os.path.exists(outputFolder):
@@ -102,7 +89,6 @@ if not os.path.exists(outputFolder):
 # Output to CSV
 finalOddity.to_csv("%sallOddity.csv" % (outputFolder))
 finalSpatial.to_csv("%sallSpatial.csv" % (outputFolder))
-finalPal.to_csv("%sallPal.csv" % (outputFolder))
 
 # Output errors
 errors = pd.DataFrame(errors)
