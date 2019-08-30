@@ -46,11 +46,6 @@ for folder in dataFolders:
                 spatialComplete = pd.DataFrame.from_csv(file)
             else:
                 spatialComplete = spatialComplete.append(pd.DataFrame.from_csv(file))
-        elif "Pal" in file:
-            if not 'palComplete' in locals():
-                palComplete = pd.DataFrame.from_csv(file)
-            else:
-                palComplete = palComplete.append(pd.DataFrame.from_csv(file))
         elif "errors" in file:
             if not 'errorsComplete' in locals():
                 errorsComplete = pd.DataFrame.from_csv(file)  
@@ -64,5 +59,4 @@ if not os.path.exists(outputFolder):
 # Save files
 oddityComplete.to_csv("%soddityComplete.csv" % (outputFolder))
 spatialComplete.to_csv("%sspatialComplete.csv" % (outputFolder))
-palComplete.to_csv("%spalComplete.csv" % (outputFolder))
 errorsComplete.to_csv("%serrorsComplete.csv" % (outputFolder))
