@@ -31,8 +31,8 @@ import pandas as pd
 
 # Load data and check contents
 dataFiles = os.listdir(dataFolder)
-if not len(dataFiles) == 4:
-    sys.exit("number of files does not equal 4. There should be four files - errorsComplete.csv, oddityComplete.csv, palComplete.csv, and spatialComplete.csv")
+if not len(dataFiles) == 3:
+    sys.exit("number of files does not equal 3. There should be four files - errorsComplete.csv, oddityComplete.csv, and spatialComplete.csv")
 
 
 #%% Oddity analysis
