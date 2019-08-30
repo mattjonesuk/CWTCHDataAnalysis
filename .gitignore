@@ -1,0 +1,12 @@
+# Mac system file 
+.DS_Store 
+
+# IDE files
+.idea/
+
+# Distribution / packaging
+build/
+
+# Byte-compiled / optimised / DLL files
+__pycache__/
+*.py[cod]
