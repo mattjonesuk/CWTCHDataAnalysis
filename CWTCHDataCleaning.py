@@ -62,6 +62,9 @@ for index, participantData in enumerate(jsonData):
         errors.append('No Oddity data for participant - %s' % (participantData[0]['panelId']))
     elif oddityData["state"] == "aborted":
         errors.append('Oddity aborted for participant - %s' % (participantData[0]['panelId']))
+    elif oddityData["state"] == "prestart":
+        if oddityData["state"] != "completed":
+            errors.append('Oddity not started for participant - %s' % (participantData[0]['panelId']))
     elif oddityData["state"] == "completed":
             subjectAllOddityData = cf.processData(oddityData)
             allOddityData.append(subjectAllOddityData)
@@ -71,6 +74,9 @@ for index, participantData in enumerate(jsonData):
         errors.append('No Spatial data for participant - %s' % (participantData[0]['panelId']))
     elif spatialData["state"] == "aborted":
         errors.append('Spatial aborted for participant - %s' % (participantData[0]['panelId']))
+    elif spatialData["state"] == "prestart":
+        if spatialData["state"] != "completed":
+            errors.append('Spatial not started for participant - %s' % (participantData[0]['panelId']))
     elif spatialData["state"] == "completed":
         subjectAllSpatialData = cf.processData(spatialData)
         allSpatialData.append(subjectAllSpatialData)
