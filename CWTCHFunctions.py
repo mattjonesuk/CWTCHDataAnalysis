@@ -154,6 +154,18 @@ def processData (data):
                                 rt1 = float('nan')
                                 response2 = float('nan')
                                 rt2 = float('nan')
+                                
+                # the following loop and if statements run through the stimuli
+                # in each trial (regardless of whether there were 6 or 7 unique
+                # items presented) and checks if the participant clicked despite
+                # a target not being presented (i.e. false alarm).
+                falseAlarms = [] # create an empty list to store data for false alarms
+                
+                for index, stimulus in enumerate(stimuli):
+                    if 'clicked' in stimulus.keys():
+                        if 'isTarget' not in stimulus.keys():
+                            falseAlarms.append(1)
+                totalFalseAlarms = sum(falseAlarms)
                         
                 # populate dictionary entry
                 entry = {}
@@ -176,6 +188,7 @@ def processData (data):
                 entry['targetItem2'] = targetItem2
                 entry['response2'] = response2
                 entry['rt2'] = rt2
+                entry['totalFalseAlarms'] = totalFalseAlarms
                 #add to list
                 completeddata.append(entry)
            
