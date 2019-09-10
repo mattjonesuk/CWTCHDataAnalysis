@@ -81,6 +81,6 @@ spatialGroupedDataRT = spatialTestDataRT.groupby(by = ['participantID', 'conditi
 spatialGroupedDataAccuracy = spatialGroupedDataAccuracy.rename(columns = {'value':'totalHits'})
 spatialGroupedDataRT = spatialGroupedDataRT.rename(columns = {'value':'meanRT'})
 
-# Export Data
+# Export data
 spatialGroupedDataAccuracy.to_csv("%s/spatialFinalDataAccuracy.csv" % (figsFolder))
 spatialGroupedDataRT.to_csv("%s/spatialFinalDataRT.csv" % (figsFolder))
