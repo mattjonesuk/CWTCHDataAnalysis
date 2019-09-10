@@ -56,8 +56,31 @@ oddityGroupedDataCorrOnly.to_csv("%s/oddityCorrOnlyFinalData.csv" % (figsFolder)
 
 spatialComplete = pd.DataFrame.from_csv(os.path.join(dataFolder,'spatialComplete.csv'))
 
-# Select only test trials (not probes)
+# Remove practice data
 spatialTestData = spatialComplete[spatialComplete['phase'] != 'practice']
 
-# Export Data
-spatialTestData.to_csv("%s/spatialFinalData.csv" % (figsFolder))
+# Create separate dataframes for accuracy and reaction times 
+spatialTestDataAccuracy = spatialTestData[['participantID', 'condition', 'response1', 'response2', 'totalFalseAlarms']]
+spatialTestDataRT = spatialTestData[['participantID', 'condition', 'rt1', 'rt2']]
+
+# Reshape the dataframes to make it easier to perform calculations
+spatialTestDataAccuracy = spatialTestDataAccuracy.melt(id_vars = ['participantID', 'condition', 'totalFalseAlarms'])
+spatialTestDataRT = spatialTestDataRT.melt(id_vars = ['participantID', 'condition'])
+
+# Remove rows in the accuracy dataframe where the 'value' column is nan
+spatialTestDataAccuracy = spatialTestDataAccuracy[pd.notnull(spatialTestDataAccuracy['value'])]
+
+# Change 'value' column in the accuracy dataframes so that True = 1 and False = 0 
+spatialTestDataAccuracy.value = spatialTestDataAccuracy.value.astype(int) 
+
+# Collapse repeated-measures data
+spatialGroupedDataAccuracy = spatialTestDataAccuracy.groupby(by = ['participantID', 'condition'], as_index = False)['value', 'totalFalseAlarms'].sum()
+spatialGroupedDataRT = spatialTestDataRT.groupby(by = ['participantID', 'condition'], as_index = False)['value'].mean()
+
+# Rename the 'value' columns in both dataframes to reflect its actual meaning
+spatialGroupedDataAccuracy = spatialGroupedDataAccuracy.rename(columns = {'value':'totalHits'})
+spatialGroupedDataRT = spatialGroupedDataRT.rename(columns = {'value':'meanRT'})
+
+# Export data
+spatialGroupedDataAccuracy.to_csv("%s/spatialFinalDataAccuracy.csv" % (figsFolder))
+spatialGroupedDataRT.to_csv("%s/spatialFinalDataRT.csv" % (figsFolder))
