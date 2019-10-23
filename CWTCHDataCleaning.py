@@ -9,9 +9,6 @@ Created on Sun May  14 15:31:31 2017
 
 ## THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
 
-# This is the number of subjects included in the data.
-expectedNoSubjects = 8 
-
 # This is the path of the downloaded data file - it is advised that this should 
 # be renamed to something unique for that dataset. 
 jsonDataPath = "/Users/mattjones/Downloads/data2.json" 
@@ -19,8 +16,6 @@ jsonDataPath = "/Users/mattjones/Downloads/data2.json"
 # This is the name of the directory for the output to be saved into. It does 
 # not need to be created in advance, as the script will create it.
 outputFolder = "/Users/mattjones/Downloads/testoutput2/"
-
-
 
 
 
@@ -38,11 +33,7 @@ import pandas as pd
 jsonData = cf.loadData(jsonDataPath)
 
 # Remove blank entries and check size matches
-jsonData = [x for x in jsonData if x]
-
-if len(jsonData) != expectedNoSubjects:
-    sys.exit("number of loaded subjects does not match the number of expected subjects")
-    
+jsonData = [x for x in jsonData if x]    
 
 # Create an empty list to store all data for each task
 allOddityData = []
