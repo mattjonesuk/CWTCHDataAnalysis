@@ -38,19 +38,19 @@ for folder in dataFolders:
     for file in files:
         if "Oddity" in file:
             if not 'oddityComplete' in locals():
-                oddityComplete = pd.DataFrame.from_csv(file)
+                oddityComplete = pd.read_csv(file)
             else:
-                oddityComplete = oddityComplete.append(pd.DataFrame.from_csv(file))
+                oddityComplete = oddityComplete.append(pd.read_csv(file))
         elif "Spatial" in file:
             if not 'spatialComplete' in locals():
-                spatialComplete = pd.DataFrame.from_csv(file)
+                spatialComplete = pd.read_csv(file)
             else:
-                spatialComplete = spatialComplete.append(pd.DataFrame.from_csv(file))
+                spatialComplete = spatialComplete.append(pd.read_csv(file))
         elif "errors" in file:
             if not 'errorsComplete' in locals():
-                errorsComplete = pd.DataFrame.from_csv(file)  
+                errorsComplete = pd.read_csv(file)  
             else:
-                errorsComplete = errorsComplete.append(pd.DataFrame.from_csv(file), ignore_index=True)
+                errorsComplete = errorsComplete.append(pd.read_csv(file), ignore_index=True)
                 
 # Create Output Folder
 if not os.path.exists(outputFolder):
