@@ -37,7 +37,7 @@ if not len(dataFiles) == 3:
 
 #%% Oddity analysis
 
-oddityComplete = pd.DataFrame.from_csv(os.path.join(dataFolder,'oddityComplete.csv'))
+oddityComplete = pd.read_csv(os.path.join(dataFolder,'oddityComplete.csv'))
 
 # Remove practice data
 oddityTestData = oddityComplete[oddityComplete['kind'] == 'test'] 
@@ -54,7 +54,7 @@ oddityGroupedDataCorrOnly.to_csv("%s/oddityCorrOnlyFinalData.csv" % (figsFolder)
 
 #%% Spatial analysis
 
-spatialComplete = pd.DataFrame.from_csv(os.path.join(dataFolder,'spatialComplete.csv'))
+spatialComplete = pd.read_csv(os.path.join(dataFolder,'spatialComplete.csv'))
 
 # Remove practice data
 spatialTestData = spatialComplete[spatialComplete['phase'] != 'practice']
