@@ -1,14 +1,16 @@
 # CWTCHDataAnalysis
 
-## CWTCH – Data Analysis Process
+## About 
+The CWTCHDataAnalysis scripts import, tidy and transform cognitive data collected using the Cardiff Web Tools for Cognitive Health (CWTCH) online research platform. This platform was developed by Ounce Technology (www.ouncetech.co.uk) in collaboration with researchers at Cardiff University, UK. 
 
-Prerequisites
+## Prerequisites
+In order to run the scripts successfully, you will need:
+•	Python 3.6 / 3.7 
+•	Project data file(s) downloaded in JSON format
 
-•	Designed to be run with Python 3.6/3.7
-•	Project data file(s) to be downloaded in JSON format
+We recommend that users install and use the Spyder IDE. 
 
-Installing and opening Spyder IDE (if IDE not already installed)
-
+If this has not yet been done, follow the steps below:
 1.	Download and install Anaconda Navigator: https://docs.anaconda.com/anaconda/navigator/install/
 2.	Open Anaconda Navigator and click to install Spyder
 3.	Click to launch Spyder once installed
@@ -25,7 +27,7 @@ This script joins together multiple output CSV files from the CWTCHDataCleaning.
 
 •	CWTCHDataAnalysis.py
 
-This script summarises the data in a more appropriate format. For the Oddity task, it generates three outputs (one with reaction time data for all items, one with reaction time data for correct items, and one with accuracy data) in a summary format with one row per subject. For the Spatial task, it generates two outputs (one with reaction time data for all items, and one with hits/misses data) in a summary format with one row per subject. Note: Editable fields need to be amended at the top of the script.
+This script summarises the data in a more appropriate format. For the Oddity task, it generates three CSV files (one with reaction time data for all items, one with reaction time data for correct items, and one with accuracy data) in a summary format with one row per subject. For the Spatial task, it generates two CSV files (one with reaction time data for all items, and one with hits/misses data) in a summary format with one row per subject. Note: Editable fields need to be amended at the top of the script.
 
 •	CWTCHFunctions.py
 
