@@ -115,14 +115,14 @@ spatialRTData.rename(columns = {'b1rooms': 'oneBackRooms_RT', 'b1shapes': 'oneBa
 
 # Change column names - accuracy data
 spatialAccuracyData.columns = [' '.join(col).strip() for col in spatialAccuracyData.columns.values]
-spatialAccuracyData = spatialAccuracyData.rename(columns = {'totalHits b1rooms': 'oneBackRooms_totalHits',
-                                            'totalFalseAlarms b1rooms': 'oneBackRooms_totalFalseAlarms',
-                                            'totalHits b1shapes': 'oneBackShapes_totalHits',
-                                            'totalFalseAlarms b1shapes': 'oneBackShapes_totalFalseAlarms',
-                                            'totalHits b2rooms': 'twoBackRooms_totalHits',
-                                            'totalFalseAlarms b2rooms': 'twoBackRooms_totalFalseAlarms',
-                                            'totalHits b2shapes': 'twoBackShapes_totalHits',
-                                            'totalFalseAlarms b2shapes': 'twoBackShapes_totalFalseAlarms'})
+spatialAccuracyData.rename(columns = {'totalHits b1rooms': 'oneBackRooms_totalHits',
+                                      'totalFalseAlarms b1rooms': 'oneBackRooms_totalFalseAlarms',
+                                      'totalHits b1shapes': 'oneBackShapes_totalHits',
+                                      'totalFalseAlarms b1shapes': 'oneBackShapes_totalFalseAlarms',
+                                      'totalHits b2rooms': 'twoBackRooms_totalHits',
+                                      'totalFalseAlarms b2rooms': 'twoBackRooms_totalFalseAlarms',
+                                      'totalHits b2shapes': 'twoBackShapes_totalHits',
+                                      'totalFalseAlarms b2shapes': 'twoBackShapes_totalFalseAlarms'}, inplace = True)
 
 # Export data
 spatialRTData.to_csv("%s/spatialRTData.csv" % (figsFolder))
