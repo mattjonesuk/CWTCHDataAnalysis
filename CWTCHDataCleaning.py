@@ -23,7 +23,6 @@ outputFolder = "/Users/mattjones/Downloads/testoutput2/"
 ## NOTHING BELOW NEEDS EDITING!!
 
 
-import sys
 import CWTCHFunctions as cf
 import os
 import pandas as pd
