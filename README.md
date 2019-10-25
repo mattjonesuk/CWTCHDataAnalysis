@@ -1,7 +1,7 @@
 # CWTCHDataAnalysis
 
 ## About 
-The CWTCHDataAnalysis scripts import, tidy and transform cognitive data collected using the Cardiff Web Tools for Cognitive Health (CWTCH) online research platform. This platform was developed by Ounce Technology (www.ouncetech.co.uk) in collaboration with researchers at Cardiff University, UK. 
+The CWTCHDataAnalysis scripts import, tidy and transform cognitive data collected using the Cardiff Web Tools for Cognitive Health (CWTCH) online research platform (https://cwtch.ounce.ac/). This platform was developed by Ounce Technology (www.ouncetech.co.uk) in collaboration with researchers at Cardiff University, UK. 
 
 ## Prerequisites
 In order to run the scripts successfully, you will need:
