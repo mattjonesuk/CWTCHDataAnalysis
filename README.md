@@ -5,8 +5,8 @@ The CWTCHDataAnalysis scripts import, tidy and transform cognitive data collecte
 
 ## Prerequisites
 In order to run the scripts successfully, you will need:
-•	Python 3.6 / 3.7 
-•	Project data file(s) downloaded in JSON format
+* Python 3.6 / 3.7 
+* Project data file(s) downloaded in JSON format
 
 We recommend that users install and use the Spyder IDE. 
 
