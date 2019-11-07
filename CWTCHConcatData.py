@@ -3,60 +3,63 @@
 """
 Created on Fri May 26 21:27:34 2017
 
-@author: mattjones
+@authors: mattjones, rikkilissaman
 """
 
-
-## THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
+#%% THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
     
 # This is the path for the directory containing the data produced by the 
 # CWTCHDataCleaning.py script. It should contain multiple folders, each 
 # containing the standard output files from CWTCHDataCleaning.py script.
 
-d="/Users/mattjones/OneDrive - Cardiff University/Cardiff Uni/CWTCH Analysis/rdcpilotdata/"
+d = 'insert/path/to/directory/with/json/files/'
 
 # This is the path for the output directory where the final data should be 
 # saved. It does not need creating in advance as the script will do this.
 
-outputFolder = "/Users/mattjones/Downloads/testoutput2/testfinaloutput/"
+outputFolder = 'insert/path/to/new/output/directory/here/'
 
-
-
-
-
-## NOTHING BELOW NEEDS EDITING!!
+#%% Load data
 
 import os
 import pandas as pd
 
-#load data
 dataFolders = [os.path.join(d,o) for o in os.listdir(d) if os.path.isdir(os.path.join(d,o))]
 
+#%% Concatenate data
 
 for folder in dataFolders:
     files = [os.path.join(folder,o) for o in os.listdir(folder) if not os.path.isdir(os.path.join(folder,o))]
     for file in files:
-        if "Oddity" in file:
+        if "allOddity" in file:
             if not 'oddityComplete' in locals():
                 oddityComplete = pd.read_csv(file)
             else:
                 oddityComplete = oddityComplete.append(pd.read_csv(file))
-        elif "Spatial" in file:
+        elif "allSpatial" in file:
             if not 'spatialComplete' in locals():
                 spatialComplete = pd.read_csv(file)
             else:
                 spatialComplete = spatialComplete.append(pd.read_csv(file))
-        elif "errors" in file:
-            if not 'errorsComplete' in locals():
-                errorsComplete = pd.read_csv(file)  
+        elif "errorsOddity" in file:
+            if not 'errorsOddityComplete' in locals():
+                errorsOddityComplete = pd.read_csv(file)  
             else:
-                errorsComplete = errorsComplete.append(pd.read_csv(file), ignore_index=True)
+                errorsOddityComplete = errorsOddityComplete.append(pd.read_csv(file), ignore_index = True)
+        elif "errorsSpatial" in file:
+            if not 'errorsSpatialComplete' in locals():
+                errorsSpatialComplete = pd.read_csv(file)
+            else:
+                errorsSpatialComplete = errorsSpatialComplete.append(pd.read_csv(file), ignore_index = True)
                 
-# Create Output Folder
+#%% Output data
+                
+# Create output folder
 if not os.path.exists(outputFolder):
     os.makedirs(outputFolder)
     
 # Save files
 oddityComplete.to_csv("%soddityComplete.csv" % (outputFolder))
 spatialComplete.to_csv("%sspatialComplete.csv" % (outputFolder))
-errorsComplete.to_csv("%serrorsComplete.csv" % (outputFolder))
+errorsOddityComplete.to_csv("%serrorsOddityComplete.csv" % (outputFolder))
+errorsSpatialComplete.to_csv("%serrorsSpatialComplete.csv" % (outputFolder))
