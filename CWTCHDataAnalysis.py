@@ -3,26 +3,20 @@
 """
 Created on Mon Jun  5 15:31:31 2017
 
-@author: mattjones
+@authors: mattjones, rikkilissaman
 """
 
 
 ## THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
     
 # This is the path for the directory containing the data to be used
-dataFolder = '/Users/mattjones/Downloads/testoutput/testfinaloutput'
+dataFolder = 'insert/path/to/directory/containing/csv/files/'
 
 # This is the name of the directory for the final output to be saved into. It
 # needs to be created in advance, as the script does not create it.
-figsFolder = '/Users/mattjones/Downloads/FinalOutput'
+figsFolder = '/insert/path/to/pre-created/output/directory/'
 
-
-
-
-
-
-
-## NOTHING BELOW NEEDS EDITING!!
+#%% Import data and check
 
 import sys
 import os
@@ -31,9 +25,8 @@ import pandas as pd
 
 # Load data and check contents
 dataFiles = os.listdir(dataFolder)
-if not len(dataFiles) == 3:
-    sys.exit("number of files does not equal 3. There should be three files - errorsComplete.csv, oddityComplete.csv, and spatialComplete.csv")
-
+if not len(dataFiles) == 4:
+    sys.exit('number of files does not equal 4. There should be four files - errorsOddityComplete.csv, , errorsSpatialComplete.csv, oddityComplete.csv, and spatialComplete.csv')
 
 #%% Oddity analysis
 
@@ -65,9 +58,9 @@ oddityRTCorrData.rename(columns = {'3choiceFace': '3choiceFace_corrRT', '3choice
                     inplace = True)
 
 # Export the data
-oddityRTData.to_csv("%s/oddityRTData.csv" % (figsFolder))
-oddityAccuracyData.to_csv("%s/oddityAccuracyData.csv" % (figsFolder))
-oddityRTCorrData.to_csv("%s/oddityRTCorrData.csv" % (figsFolder))
+oddityRTData.to_csv('%s/oddityRTData.csv' % (figsFolder))
+oddityAccuracyData.to_csv('%s/oddityAccuracyData.csv' % (figsFolder))
+oddityRTCorrData.to_csv('%s/oddityRTCorrData.csv' % (figsFolder))
 
 #%% Spatial analysis
 
@@ -125,5 +118,5 @@ spatialAccuracyData.rename(columns = {'totalHits b1rooms': 'oneBackRooms_totalHi
                                       'totalFalseAlarms b2shapes': 'twoBackShapes_totalFalseAlarms'}, inplace = True)
 
 # Export data
-spatialRTData.to_csv("%s/spatialRTData.csv" % (figsFolder))
-spatialAccuracyData.to_csv("%s/spatialAccuracyData.csv" % (figsFolder))
+spatialRTData.to_csv('%s/spatialRTData.csv' % (figsFolder))
+spatialAccuracyData.to_csv('%s/spatialAccuracyData.csv' % (figsFolder))
