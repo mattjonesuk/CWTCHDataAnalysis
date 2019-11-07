@@ -33,8 +33,8 @@ allOddityData = []
 allSpatialData = []
 
 # Create an empty dictionary to store errors from both tasks
-errorsOddity = {'ID': [], 'missing': [], 'aborted': [], 'prestart': []}
-errorsSpatial = {'ID': [], 'missing': [], 'aborted': [], 'prestart': []}
+errorsOddity = {'participantID': [], 'missing': [], 'aborted': [], 'prestart': []}
+errorsSpatial = {'participantID': [], 'missing': [], 'aborted': [], 'prestart': []}
 
 #%% Analyse data 
 
@@ -47,13 +47,13 @@ for index, participantData in enumerate(jsonData):
     
     # If oddity data is missing (i.e. 'None'), append ID and Y/N to dictionary
     if oddityData == 'None':
-       errorsOddity['ID'].append(participantData[0]['panelId'])
+       errorsOddity['participantID'].append(participantData[0]['panelId'])
        errorsOddity['missing'].append('Yes')
        errorsOddity['aborted'].append('No')
        errorsOddity['prestart'].append('No')
     # If oddity was not completed, append ID to dictionary then check why
     elif oddityData['state'] != 'completed':
-        errorsOddity['ID'].append(participantData[0]['panelId'])
+        errorsOddity['participantID'].append(participantData[0]['panelId'])
         # If oddity was aborted, append Y/N to dictionary
         if oddityData['state'] == 'aborted':
             errorsOddity['missing'].append('No')
@@ -73,13 +73,13 @@ for index, participantData in enumerate(jsonData):
     
     # If spatial data is missing (i.e. 'None'), append ID and Y/N to dictionary
     if spatialData == 'None':
-        errorsSpatial['ID'].append(participantData[0]['panelId'])
+        errorsSpatial['participantID'].append(participantData[0]['panelId'])
         errorsSpatial['missing'].append('Yes')
         errorsSpatial['aborted'].append('No')
         errorsSpatial['prestart'].append('No')
     # If spatial was not completed, append ID to dictionary then check why
     elif spatialData['state'] != 'completed':
-        errorsSpatial['ID'].append(participantData[0]['panelId'])
+        errorsSpatial['participantID'].append(participantData[0]['panelId'])
         # If spatial was aborted, append Y/N to dictionary
         if spatialData['state'] == 'aborted':
             errorsSpatial['missing'].append('No')
