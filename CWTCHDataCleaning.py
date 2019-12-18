@@ -25,7 +25,7 @@ import pandas as pd
 # Load data
 jsonData = cf.loadData(jsonDataPath)
 
-# Remove blank entries and check size matches
+# Remove blank entries
 jsonData = [x for x in jsonData if x]    
 
 # Create an empty list to store data from both tasks
