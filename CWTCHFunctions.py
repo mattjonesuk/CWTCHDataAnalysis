@@ -6,9 +6,6 @@ Created on Sun May  14 15:31:31 2017
 @author: mattjones
 """
 
-
-## This file contains all of the functions used in the CWTCH Analysis Script (CWTCHAnalysisScript.py)
-
 #%% The loadData function is used to load the json data file.  It can contain mulitple subjects.
 def loadData( filename ):
 

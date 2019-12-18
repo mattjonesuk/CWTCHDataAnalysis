@@ -6,8 +6,7 @@ Created on Mon Jun  5 15:31:31 2017
 @authors: mattjones, rikkilissaman
 """
 
-
-## THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
+#%% THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
     
 # This is the path for the directory containing the data to be used
 dataFolder = 'insert/path/to/directory/containing/csv/files/'
@@ -21,7 +20,6 @@ figsFolder = '/insert/path/to/pre-created/output/directory/'
 import sys
 import os
 import pandas as pd
-
 
 # Load data and check contents
 dataFiles = os.listdir(dataFolder)
