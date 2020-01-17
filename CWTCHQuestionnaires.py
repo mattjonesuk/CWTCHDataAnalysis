@@ -9,11 +9,11 @@ Created on Wed Dec 18 18:34:18 2019
 #%% THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
 
 # This is the path to the questionnaire data file
-questDataPath = '/Users/rikkilissaman/Python/questionnaires/test-quest-data.json'
+questDataPath = 'insert/path/to/json/here/file.json'
 
 # This is the name of the directory for the output to be saved into. It does 
 # not need to be created in advance, as the script will create it.
-questDataFolder = '/Users/rikkilissaman/Python/questionnaires/test-script-191218/'
+questDataFolder = 'insert/path/to/new/output/directory/here/'
 
 #%% Import questionnaire data
 

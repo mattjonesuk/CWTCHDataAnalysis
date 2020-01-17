@@ -13,7 +13,7 @@ dataFolder = 'insert/path/to/directory/containing/csv/files/'
 
 # This is the name of the directory for the final output to be saved into. It
 # needs to be created in advance, as the script does not create it.
-figsFolder = '/insert/path/to/pre-created/output/directory/'
+figsFolder = 'insert/path/to/pre-created/output/directory/'
 
 #%% Import data and check
 
