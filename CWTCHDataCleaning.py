@@ -33,8 +33,10 @@ allOddityData = []
 allSpatialData = []
 
 # Create an empty dictionary to store errors from both tasks
-errorsOddity = {'participantID': [], 'missing': [], 'aborted': [], 'prestart': []}
-errorsSpatial = {'participantID': [], 'missing': [], 'aborted': [], 'prestart': []}
+errorsOddity = {'participantID': [], 'missing': [], 'aborted': [],
+                'abandoned': [], 'prestart': []}
+errorsSpatial = {'participantID': [], 'missing': [], 'aborted': [],
+                 'abandoned': [], 'prestart': []}
 
 #%% Analyse data 
 
@@ -55,6 +57,7 @@ for index, participantData in enumerate(jsonData):
        errorsOddity['participantID'].append(participantData[0]['panelId'])
        errorsOddity['missing'].append('Yes')
        errorsOddity['aborted'].append('No')
+       errorsOddity['abandoned'].append('No')
        errorsOddity['prestart'].append('No')
     # If oddity was not completed, append ID to dictionary then check why
     elif oddityData['state'] != 'completed':
@@ -63,14 +66,20 @@ for index, participantData in enumerate(jsonData):
         if oddityData['state'] == 'aborted':
             errorsOddity['missing'].append('No')
             errorsOddity['aborted'].append('Yes')
+            errorsOddity['abandoned'].append('No')
             errorsOddity['prestart'].append('No')
-        # If oddity was prestarted, check it wasn't eventually completed
+        # If oddity was abandoned, append Y/N to dictionary
+        elif oddityData['state'] == 'abandoned':
+            errorsOddity['missing'].append('No')
+            errorsOddity['aborted'].append('No')
+            errorsOddity['abandoned'].append('Yes')
+            errorsOddity['prestart'].append('No')
+        # If oddity was prestarted, append Y/N to dictionary
         elif oddityData['state'] == 'prestart':
-            # If oddity wasn't eventually completed, append Y/N to dictionary
-            if oddityData['state'] != 'completed':
-                errorsOddity['missing'].append('No')
-                errorsOddity['aborted'].append('No')
-                errorsOddity['prestart'].append('Yes')
+            errorsOddity['missing'].append('No')
+            errorsOddity['aborted'].append('No')
+            errorsOddity['abandoned'].append('No')
+            errorsOddity['prestart'].append('Yes')
     # If oddity was completed, process the data 
     elif oddityData['state'] == 'completed':
         subjectAllOddityData = cf.processData(oddityData)
@@ -81,6 +90,7 @@ for index, participantData in enumerate(jsonData):
         errorsSpatial['participantID'].append(participantData[0]['panelId'])
         errorsSpatial['missing'].append('Yes')
         errorsSpatial['aborted'].append('No')
+        errorsSpatial['abandoned'].append('No')
         errorsSpatial['prestart'].append('No')
     # If spatial was not completed, append ID to dictionary then check why
     elif spatialData['state'] != 'completed':
@@ -89,14 +99,20 @@ for index, participantData in enumerate(jsonData):
         if spatialData['state'] == 'aborted':
             errorsSpatial['missing'].append('No')
             errorsSpatial['aborted'].append('Yes')
+            errorsSpatial['abandoned'].append('No')
             errorsSpatial['prestart'].append('No')
-        # If spatial was prestarted, check it wasn't eventually completed
+        # If spatial was abandoned, append Y/N to dictionary
+        elif spatialData['state'] == 'abandoned':
+            errorsSpatial['missing'].append('No')
+            errorsSpatial['aborted'].append('No')
+            errorsSpatial['abandoned'].append('Yes')
+            errorsSpatial['prestart'].append('No')
+        # If spatial was prestarted, append Y/N to dictionary
         elif spatialData['state'] == 'prestart':
-            # If spatial wasn't eventually completed, append Y/N to dictionary
-            if spatialData['state'] != 'completed':
-                errorsSpatial['missing'].append('No')
-                errorsSpatial['aborted'].append('No')
-                errorsSpatial['prestart'].append('Yes')
+            errorsSpatial['missing'].append('No')
+            errorsSpatial['aborted'].append('No')
+            errorsSpatial['abandoned'].append('No')
+            errorsSpatial['prestart'].append('Yes')
     # If spatial was completed, process the data
     elif spatialData['state'] == 'completed':
         subjectAllSpatialData = cf.processData(spatialData)
