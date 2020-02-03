@@ -6,22 +6,20 @@ Created on Mon Jun  5 15:31:31 2017
 @authors: mattjones, rikkilissaman
 """
 
-
-## THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
+#%% THESE VARIABLES NEED EDITING BEFORE RUNNING THE SCRIPT:
     
 # This is the path for the directory containing the data to be used
 dataFolder = 'insert/path/to/directory/containing/csv/files/'
 
 # This is the name of the directory for the final output to be saved into. It
 # needs to be created in advance, as the script does not create it.
-figsFolder = '/insert/path/to/pre-created/output/directory/'
+figsFolder = 'insert/path/to/pre-created/output/directory/'
 
 #%% Import data and check
 
 import sys
 import os
 import pandas as pd
-
 
 # Load data and check contents
 dataFiles = os.listdir(dataFolder)

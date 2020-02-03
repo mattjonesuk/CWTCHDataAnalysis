@@ -3,7 +3,7 @@
 ## About 
 The CWTCHDataAnalysis scripts import, tidy and transform cognitive data collected using the Cardiff Web Tools for Cognitive Health (CWTCH) online research platform (https://cwtch.ounce.ac/). This platform was developed by Ounce Technology (www.ouncetech.co.uk) in collaboration with researchers at Cardiff University, UK. 
 
-The CWTCH platform hosts two cognitive tasks - an odd-one-out perceptual discrimination task (Oddity) and a spatial N-back task (Spatial). It also hosts a number of questionnaires, each focused on different topics. 
+The CWTCH platform hosts two cognitive tasks - an odd-one-out perceptual discrimination task (Oddity) and a spatial N-back task (Spatial). It also hosts five questionnaires, each focused on different topics. 
 
 ## Prerequisites
 In order to run the scripts successfully, you will need:
@@ -34,6 +34,12 @@ Note: Editable fields need to be amended at the top of the script. The input dir
 •	**CWTCHDataAnalysis.py**
 
 This script summarises the data in a more appropriate format. For the Oddity task, it generates three CSV files (one with reaction time data for all items, one with reaction time data for correct items, and one with accuracy data) in a summary format with one row per subject. For the Spatial task, it generates two CSV files (one with reaction time data for all items, and one with hits/misses data) in a summary format with one row per subject. 
+
+Note: Editable fields need to be amended at the top of the script.
+
+•	**CWTCHQuestionnaires.py**
+
+This script imports, analyses, re-formats and exports the questionnaire data. It outputs five CSV files, one for each of the questionnaires.
 
 Note: Editable fields need to be amended at the top of the script.
 
