@@ -41,6 +41,11 @@ errorsSpatial = {'participantID': [], 'missing': [], 'aborted': [], 'prestart': 
 # Start loop to analyse each participant
 for index, participantData in enumerate(jsonData):
     
+    # If the list containing participant data has more than 2 elements, remove
+    # any element containing incomplete data
+    if (len(participantData) > 2):
+        participantData = [item for item in participantData if item['state'] == 'completed']
+    
     # Get task data
     oddityData = cf.getTaskData(participantData, 'oddity')
     spatialData = cf.getTaskData(participantData, 'spatial')
