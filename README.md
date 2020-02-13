@@ -35,7 +35,7 @@ Note: Editable fields need to be amended at the top of the script. The input dir
 
 This script summarises the data in a more appropriate format. For the Oddity task, it generates three CSV files (one with reaction time data for all items, one with reaction time data for correct items, and one with accuracy data) in a summary format with one row per subject. For the Spatial task, it generates two CSV files (one with reaction time data for all items, and one with hits/misses data) in a summary format with one row per subject. 
 
-Note: Editable fields need to be amended at the top of the script.
+Note: Editable fields need to be amended at the top of the script. Unlike the other scripts, an output folder must be created in advance.
 
 •	**CWTCHQuestionnaires.py**
 
