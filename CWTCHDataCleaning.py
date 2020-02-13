@@ -43,10 +43,10 @@ errorsSpatial = {'participantID': [], 'missing': [], 'aborted': [],
 # Start loop to analyse each participant
 for index, participantData in enumerate(jsonData):
     
-    # If the list containing participant data has more than 2 elements, remove
-    # any element containing incomplete data
+    # If the list containing participant data has more than 2 elements
     if len(participantData) > 2:
-        participantData = [item for item in participantData if item['state'] == 'completed']
+        # Remove any element containing prestart data
+        participantData = [item for item in participantData if item['state'] != 'prestart']
         
     # If the list containing participant data has exactly 2 elements
     if len(participantData) == 2:
@@ -56,7 +56,13 @@ for index, participantData in enumerate(jsonData):
             if participantData[0]['state'] == 'prestart':
                 # Remove the first element
                 participantData.remove(participantData[0])
-        
+        # If the first and second element contain oddity data
+        elif participantData[0]['taskId'] == 'oddity' and participantData[1]['taskId'] == 'oddity':
+            # If the first oddity run was prestarted
+            if participantData[0]['state'] == 'prestart':
+                # Remove the first element
+                participantData.remove(participantData[0])
+            
     # Get task data
     oddityData = cf.getTaskData(participantData, 'oddity')
     spatialData = cf.getTaskData(participantData, 'spatial')
