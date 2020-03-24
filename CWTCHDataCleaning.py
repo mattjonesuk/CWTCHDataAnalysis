@@ -56,12 +56,20 @@ for index, participantData in enumerate(jsonData):
             if participantData[0]['state'] == 'prestart':
                 # Remove the first element
                 participantData.remove(participantData[0])
+            # If the second spatial run was prestarted
+            elif participantData[1]['state'] == 'prestart':
+                # Remove the second element
+                participantData.remove(participantData[1])
         # If the first and second element contain oddity data
         elif participantData[0]['taskId'] == 'oddity' and participantData[1]['taskId'] == 'oddity':
             # If the first oddity run was prestarted
             if participantData[0]['state'] == 'prestart':
                 # Remove the first element
                 participantData.remove(participantData[0])
+            # If the second oddity run was prestarted
+            if participantData[1]['state'] == 'prestart':
+                # Remove the second element
+                participantData.remove(participantData[1])
             
     # Get task data
     oddityData = cf.getTaskData(participantData, 'oddity')
