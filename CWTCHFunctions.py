@@ -31,6 +31,53 @@ def getTaskData ( participantdata, taskid ):
   
     return taskdata
 
+#%% The oddityStimCheck function is used to check for a known coding error associated with two three-choice oddity stimuli
+def oddityStimCheck(data):
+    
+    # for x in range 0 to 7 (there are 8 phases for the oddity task)
+    for x in range(0, 8):
+        # if the oddity task was type 3choiceFace and it was the test phase
+        if data['phases'][x]['phase']['type'] == "3choiceFace" and data['phases'][x]['phase']['kind'] == "test":
+            # for y in range 0 to 53 (there are 54 trials in the three-choice oddity test phases)
+            for y in range(0, 54):
+                # if the stimulus is called "face-male9-3.jpg"
+                if data['phases'][x]['blocks'][0]['trials'][y]['stimulus'] == 'face-male9-3.jpg':
+                    # if the target was incorrectly listed as 1 (i.e. top image in three-choice oddity)
+                    if data['phases'][x]['blocks'][0]['trials'][y]['location'][4] == 1:
+                        # change the target location so that it is correctly listed as 3 (i.e. bottom right in three-choice oddity)
+                        data['phases'][x]['blocks'][0]['trials'][y]['location'][4] = 3
+                    # if the selected location was correctly given as 3 (i.e. bottom right)
+                    if data['phases'][x]['blocks'][0]['trials'][y]['location'][0] == 3:
+                        # make sure the Boolean is down as "True"
+                        data['phases'][x]['blocks'][0]['trials'][y]['location'][3] = True
+                    # If the selected location was incorrectly given as 1 or 2 (i.e. top or bottom left)
+                    else:
+                        # make sure the Boolean is down as "False"
+                        data['phases'][x]['blocks'][0]['trials'][y]['location'][3] = False
+
+    # for x in range 0 to 7 (there are 8 phases for the oddity task)
+        for x in range(0, 8):
+            # if the oddity task was type 3choiceFace and it was the test phase
+            if data['phases'][x]['phase']['type'] == "3choiceScene" and data['phases'][x]['phase']['kind'] == "test":
+                # for y in range 0 to 53 (there are 54 trials in the three-choice oddity test phases)
+                for y in range(0, 54):
+                    # if the stimulus is called "face-male9-3.jpg"
+                    if data['phases'][x]['blocks'][0]['trials'][y]['stimulus'] == 'scene8-3.jpg':
+                        # if the target was incorrectly listed as 1 (i.e. top image in three-choice oddity)
+                        if data['phases'][x]['blocks'][0]['trials'][y]['location'][4] == 1:
+                            # change the target location so that it is correctly listed as 3 (i.e. bottom right in three-choice oddity)
+                            data['phases'][x]['blocks'][0]['trials'][y]['location'][4] = 3
+                            # if the selected location was correctly given as 3 (i.e. bottom right)
+                        if data['phases'][x]['blocks'][0]['trials'][y]['location'][0] == 3:
+                            # make sure the Boolean is down as "True"
+                            data['phases'][x]['blocks'][0]['trials'][y]['location'][3] = True
+                        # If the selected location was incorrectly given as 1 or 2 (i.e. top or bottom left)
+                        else:
+                            # make sure the Boolean is down as "False"
+                            data['phases'][x]['blocks'][0]['trials'][y]['location'][3] = False
+
+    return data
+
 #%% this function processes the data trial-by-trial and produces a flattened list to return back to the main script
 def processData (data):
     
