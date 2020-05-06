@@ -105,6 +105,7 @@ for index, participantData in enumerate(jsonData):
             errorsOddity['prestart'].append('Yes')
     # If oddity was completed, process the data 
     elif oddityData['state'] == 'completed':
+        oddityData = cf.oddityStimCheck(oddityData)
         subjectAllOddityData = cf.processData(oddityData)
         allOddityData.append(subjectAllOddityData)
     
