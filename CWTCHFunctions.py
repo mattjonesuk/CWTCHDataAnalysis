@@ -57,11 +57,11 @@ def oddityStimCheck(data):
 
     # for x in range 0 to 7 (there are 8 phases for the oddity task)
         for x in range(0, 8):
-            # if the oddity task was type 3choiceFace and it was the test phase
+            # if the oddity task was type 3choiceScene and it was the test phase
             if data['phases'][x]['phase']['type'] == "3choiceScene" and data['phases'][x]['phase']['kind'] == "test":
                 # for y in range 0 to 53 (there are 54 trials in the three-choice oddity test phases)
                 for y in range(0, 54):
-                    # if the stimulus is called "face-male9-3.jpg"
+                    # if the stimulus is called "scene8-3.jpg"
                     if data['phases'][x]['blocks'][0]['trials'][y]['stimulus'] == 'scene8-3.jpg':
                         # if the target was incorrectly listed as 1 (i.e. top image in three-choice oddity)
                         if data['phases'][x]['blocks'][0]['trials'][y]['location'][4] == 1:
