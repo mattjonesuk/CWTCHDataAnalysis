@@ -67,7 +67,7 @@ for index, participantData in enumerate(jsonData):
                 # Remove the first element
                 participantData.remove(participantData[0])
             # If the second oddity run was prestarted
-            if participantData[1]['state'] == 'prestart':
+            elif participantData[1]['state'] == 'prestart':
                 # Remove the second element
                 participantData.remove(participantData[1])
             
