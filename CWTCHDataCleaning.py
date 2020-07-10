@@ -34,7 +34,7 @@ allSpatialData = []
 
 # Create an empty dictionary to store errors from both tasks
 errorsOddity = {'participantID': [], 'missing': [], 'aborted': [],
-                'abandoned': [], 'prestart': []}
+                'abandoned': [], 'prestart': [], 'lengthError': []}
 errorsSpatial = {'participantID': [], 'missing': [], 'aborted': [],
                  'abandoned': [], 'prestart': []}
 
@@ -75,6 +75,12 @@ for index, participantData in enumerate(jsonData):
     oddityData = cf.getTaskData(participantData, 'oddity')
     spatialData = cf.getTaskData(participantData, 'spatial')
     
+    # If oddity data is listed as completed, check to make sure it actually was 
+    # (Note: this is done here, separate from the chunk below, to ensure that
+    # changes to the task state - where necessary - are taken into account first)
+    if oddityData != 'None' and oddityData['state'] == 'completed':
+        oddityData = cf.oddityTrialsCheck(oddityData)
+        
     # If oddity data is missing (i.e. 'None'), append ID and Y/N to dictionary
     if oddityData == 'None':
        errorsOddity['participantID'].append(participantData[0]['panelId'])
@@ -82,6 +88,7 @@ for index, participantData in enumerate(jsonData):
        errorsOddity['aborted'].append('No')
        errorsOddity['abandoned'].append('No')
        errorsOddity['prestart'].append('No')
+       errorsOddity['lengthError'].append('No')
     # If oddity was not completed, append ID to dictionary then check why
     elif oddityData['state'] != 'completed':
         errorsOddity['participantID'].append(participantData[0]['panelId'])
@@ -91,18 +98,28 @@ for index, participantData in enumerate(jsonData):
             errorsOddity['aborted'].append('Yes')
             errorsOddity['abandoned'].append('No')
             errorsOddity['prestart'].append('No')
+            errorsOddity['lengthError'].append('No')
         # If oddity was abandoned, append Y/N to dictionary
         elif oddityData['state'] == 'abandoned':
             errorsOddity['missing'].append('No')
             errorsOddity['aborted'].append('No')
             errorsOddity['abandoned'].append('Yes')
             errorsOddity['prestart'].append('No')
+            errorsOddity['lengthError'].append('No')
         # If oddity was prestarted, append Y/N to dictionary
         elif oddityData['state'] == 'prestart':
             errorsOddity['missing'].append('No')
             errorsOddity['aborted'].append('No')
             errorsOddity['abandoned'].append('No')
             errorsOddity['prestart'].append('Yes')
+            errorsOddity['lengthError'].append('No')
+        # If oddity had a length error (initially viewed as completed but not)
+        elif oddityData['state'] == 'lengthError':
+            errorsOddity['missing'].append('No')
+            errorsOddity['aborted'].append('No')
+            errorsOddity['abandoned'].append('No')
+            errorsOddity['prestart'].append('No')
+            errorsOddity['lengthError'].append('Yes')
     # If oddity was completed, process the data 
     elif oddityData['state'] == 'completed':
         oddityData = cf.oddityStimCheck(oddityData)

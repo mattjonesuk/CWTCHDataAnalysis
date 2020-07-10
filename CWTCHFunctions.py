@@ -31,6 +31,38 @@ def getTaskData ( participantdata, taskid ):
   
     return taskdata
 
+#%% The oddityTrialsCheck function is used to check for rare instances whereby the oddity task state is given as completed but the number of trials indicates otherwise
+def oddityTrialsCheck(data):
+    
+    # for x in range 0 to 7 (there are 8 phases for the oddity task)
+    for x in range(0, 8):
+        # if the oddity task was type 3choiceFace and it was the test phases
+        if data['phases'][x]['phase']['type'] == "3choiceFace" and data['phases'][x]['phase']['kind'] == "test":
+            # if the length of the trials was anything other than 54
+            if len(data['phases'][x]['blocks'][0]['trials']) != 54:
+                # change the task state to "trials error"
+                data['state'] = "lengthError"
+        # if the oddity task was type 3choiceScene and it was the test phases
+        if data['phases'][x]['phase']['type'] == "3choiceScene" and data['phases'][x]['phase']['kind'] == "test":
+            # if the length of the trials was anything other than 54
+            if len(data['phases'][x]['blocks'][0]['trials']) != 54:
+                # change the task state to "trials error"
+                data['state'] = "lengthError"
+        # if the oddity task was type 4choiceFace and it was the test phases
+        if data['phases'][x]['phase']['type'] == "4choiceFace" and data['phases'][x]['phase']['kind'] == "test":
+            # if the length of the trials was anything other than 40
+            if len(data['phases'][x]['blocks'][0]['trials']) != 40:
+                # change the task state to "trials error"
+                data['state'] = "lengthError"
+        # if the oddity task was type 4choiceRoom and it was the test phases
+        if data['phases'][x]['phase']['type'] == "4choiceRoom" and data['phases'][x]['phase']['kind'] == "test":
+            # if the length of the trials was anything other than 40
+            if len(data['phases'][x]['blocks'][0]['trials']) != 40:
+                # change the task state to "trials error"
+                data['state'] = "lengthError"
+
+    return data
+
 #%% The oddityStimCheck function is used to check for a known coding error associated with two three-choice oddity stimuli
 def oddityStimCheck(data):
     
