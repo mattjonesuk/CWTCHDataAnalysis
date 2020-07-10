@@ -110,6 +110,19 @@ def oddityStimCheck(data):
 
     return data
 
+#%% The spatialPracticeCheck function is used to check for "empty" practice blocks and remove them
+def spatialPracticeCheck(data):
+    
+    # for x in range 0 to N length of data
+    for x in range(len(data['phases'])):
+        # if it was a practice phase but the length was equal to 0
+        if data['phases'][x]['phase'] == "practice" and len(data['phases'][x]['blocks']) == 0:
+            # remove the practice phase
+            del data['phases'][x]
+            break
+
+    return data
+
 #%% this function processes the data trial-by-trial and produces a flattened list to return back to the main script
 def processData (data):
     

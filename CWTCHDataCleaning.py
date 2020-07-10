@@ -126,6 +126,11 @@ for index, participantData in enumerate(jsonData):
         subjectAllOddityData = cf.processData(oddityData)
         allOddityData.append(subjectAllOddityData)
     
+    # If spatial data is listed as completed, check if there are any empty
+    # practices blocks and remove them
+    if spatialData != 'None' and spatialData['state'] == 'completed':
+        spatialData = cf.spatialPracticeCheck(spatialData) 
+    
     # If spatial data is missing (i.e. 'None'), append ID and Y/N to dictionary
     if spatialData == 'None':
         errorsSpatial['participantID'].append(participantData[0]['panelId'])
